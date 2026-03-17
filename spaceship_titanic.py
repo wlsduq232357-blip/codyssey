@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-# 나이 값을 받아 과제에서 요구한 연령대 문자열로 변환하는 함수
+# 나이 값을 받아 연령대 문자열로 변환하는 함수
 def get_age_group(age):
     # 결측치인 경우 연령대를 나눌 수 없으므로 Unknown 반환
     if pd.isna(age):
@@ -145,7 +145,7 @@ def draw_transport_by_age_group(train_df):
 
 
 
-# 보너스 과제 : Destination별 승객 연령대 분포를 시각화하는 함수
+# Destination별 승객 연령대 분포를 시각화하는 함수
 def draw_destination_age_distribution(merged_df):
     # 그래프에 사용할 연령대 순서 정의
     age_order = ['10s', '20s', '30s', '40s', '50s', '60s', '70s']
