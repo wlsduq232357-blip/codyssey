@@ -11,29 +11,22 @@ def get_age_group(age):
     # 연령대 구분을 위해 정수형으로 변환
     age = int(age)
 
-    # 10대
     if 10 <= age < 20:
         return '10s'
-    # 20대
     if 20 <= age < 30:
         return '20s'
-    # 30대
     if 30 <= age < 40:
         return '30s'
-    # 40대
     if 40 <= age < 50:
         return '40s'
-    # 50대
     if 50 <= age < 60:
         return '50s'
-    # 60대
     if 60 <= age < 70:
         return '60s'
-    # 70대
     if 70 <= age < 80:
         return '70s'
 
-    # 과제에서 요구한 범위 밖의 나이는 Others로 처리
+    #범위 밖의 나이는 Others로 처리
     return 'Others'
 
 
@@ -42,7 +35,7 @@ def find_most_related_column(train_df):
     # 기준이 되는 목표 컬럼
     target_column = 'Transported'
 
-    # 식별자 성격이 강해서 분석 의미가 떨어지는 컬럼은 제외
+    # 식별자 성격이 강해서 분석 의미가 떨어지는 컬럼은 제외함
     excluded_columns = {'PassengerId', 'Name', 'Cabin'}
 
     # 각 컬럼의 관련성 점수를 저장할 딕셔너리
@@ -111,7 +104,7 @@ def draw_transport_by_age_group(train_df):
     # 나이 값을 연령대 문자열로 변환하여 새 컬럼 생성
     graph_df['AgeGroup'] = graph_df['Age'].apply(get_age_group)
 
-    # 과제에서 요구한 10대~70대 데이터만 남김
+    # 10대~70대 데이터만 남김
     graph_df = graph_df[graph_df['AgeGroup'].isin(age_order)]
 
     # 연령대와 Transported 여부별 인원 수를 계산
@@ -152,7 +145,7 @@ def draw_transport_by_age_group(train_df):
 
 
 
-# 보너스 과제: Destination별 승객 연령대 분포를 시각화하는 함수
+# 보너스 과제 : Destination별 승객 연령대 분포를 시각화하는 함수
 def draw_destination_age_distribution(merged_df):
     # 그래프에 사용할 연령대 순서 정의
     age_order = ['10s', '20s', '30s', '40s', '50s', '60s', '70s']
@@ -163,7 +156,7 @@ def draw_destination_age_distribution(merged_df):
     # 나이 값을 연령대 문자열로 변환하여 새 컬럼 생성
     bonus_df['AgeGroup'] = bonus_df['Age'].apply(get_age_group)
 
-    # 과제에서 요구한 10대~70대 데이터만 사용
+    # 10대~70대 데이터만 사용
     bonus_df = bonus_df[bonus_df['AgeGroup'].isin(age_order)]
 
     # 목적지와 연령대별 인원 수 계산
@@ -196,7 +189,7 @@ def draw_destination_age_distribution(merged_df):
 
 
 
-# 전체 과제를 실행하는 메인 함수
+# 실행하는 메인 함수
 def main():
     # train.csv 읽기
     train_df = pd.read_csv('train.csv')
@@ -226,10 +219,10 @@ def main():
         print('No related column found.')
     print()
 
-    # 필수 과제: 연령대별 Transported 여부 그래프 출력
+    # 연령대별 Transported 여부 그래프 출력
     draw_transport_by_age_group(train_df)
 
-    # 보너스 과제: Destination별 연령대 분포 그래프 출력
+    # Destination별 연령대 분포 그래프 출력
     draw_destination_age_distribution(merged_df)
 
     # 그래프 출력
